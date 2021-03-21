@@ -25,7 +25,7 @@ public class StudentService {
         boolean exists = studentRepository.existsById(studentId);
         if (!exists) {
             throw new IllegalStateException(
-                    "Student with id " + studentId + "does not exist."
+                    "Student with id " + studentId + " does not exist."
             );
         }
         return studentRepository.findById(studentId);
@@ -44,7 +44,7 @@ public class StudentService {
         boolean exists = studentRepository.existsById(studentId);
         if (!exists) {
             throw new IllegalStateException(
-                    "Student with id " + studentId + "does not exist."
+                    "Student with id " + studentId + " does not exist."
             );
         }
         studentRepository.deleteById(studentId);
