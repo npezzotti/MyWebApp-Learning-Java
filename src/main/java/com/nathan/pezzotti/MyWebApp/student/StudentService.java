@@ -24,9 +24,7 @@ public class StudentService {
     public Optional<Student> GetStudentById(Long studentId) {
         boolean exists = studentRepository.existsById(studentId);
         if (!exists) {
-            throw new IllegalStateException(
-                    "Student with id " + studentId + " does not exist."
-            );
+            throw new StudentNotFoundException(studentId);
         }
         return studentRepository.findById(studentId);
     }
@@ -53,9 +51,7 @@ public class StudentService {
                               String name,
                               String email) {
         Student student = studentRepository.findById(studentId)
-                .orElseThrow(() -> new IllegalStateException(
-                        "Student with id " + studentId + "does not exist."
-                ));
+                .orElseThrow(() -> new StudentNotFoundException(studentId));
         if (name != null && name.length() > 0 && !Objects.equals(student.getName(), name)) {
             student.setName(name);
         }
